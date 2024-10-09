@@ -1,0 +1,35 @@
+header{
+    width: 100%;
+    height: 85px;
+    background-color: #fff;
+
+    .header-inner{
+        width: 100%;
+        height: 85px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h1{
+            color: #0D6EFD;
+        }
+
+        .header-content{
+            width: 250px;
+            height: 80px;
+            
+            ul{
+                height: 80px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                
+                li{
+                    color: #8B96A5;
+                }
+            }
+            
+        }
+    }
+}
+

@@ -1,0 +1,12 @@
+<h1>My cart</h1>
+
+<div class="cart" (click)="view()">
+    <div class="cart-inner">
+        <app-product></app-product>
+
+        <div class="cart-btns">
+            <button>Back to shop</button>
+            <button (click)="removeAll()">Remove all</button>
+        </div>
+    </div>
+</div>
