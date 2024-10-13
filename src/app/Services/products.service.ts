@@ -1,17 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Product } from '../models/product.interface';
 
-interface Product {
-  id: number;
-  name: string;
-  size: string;
-  color: string;
-  material: string;
-  seller: string;
-  price: number;
-  totalPrice: number,
-  img: string;
-  quantity: number;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -79,7 +68,7 @@ export class ProductsService {
       this.updateTotalPrice();
     }
 
-    delete(id:number):void{
+    removeOneProduct(id:number):void{
       this.products = this.products.filter(product => product.id !== id);
       this.updateTotalPrice();
     }
@@ -90,6 +79,7 @@ export class ProductsService {
         this.updateTotalPrice();
       }else{
         console.log("coupon is not find");
+        alert("Coupon was'nt find!");
       }
     }
 

@@ -1,8 +1,14 @@
 <h1>My cart</h1>
 
-<div class="cart" (click)="view()">
+<div class="cart">
     <div class="cart-inner">
-        <app-product></app-product>
+        <div class="" *ngFor="let product of products">
+            <app-product [producter]="product" (removeOneProduct)="removeProduct(product.id)"></app-product>
+        </div>
+
+        <div class="" *ngIf="products.length === 0">
+            <h3>Products is empty</h3>
+        </div>
 
         <div class="cart-btns">
             <button>Back to shop</button>

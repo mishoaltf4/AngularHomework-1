@@ -1,20 +1,9 @@
-import { Component, ViewChild, viewChild } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ProductComponent } from './product/product.component';
 import { ProductsService } from '../Services/products.service';
 import { CommonModule } from '@angular/common';
+import { Product } from '../models/product.interface';
 
-interface Product {
-  id: number;
-  name: string;
-  size: string;
-  color: string;
-  material: string;
-  seller: string;
-  price: number;
-  totalPrice: number,
-  img: string;
-  quantity: number;
-}
 
 @Component({
   selector: 'app-cart',
@@ -24,19 +13,20 @@ interface Product {
   styleUrl: './cart.component.scss'
 })
 export class CartComponent {
-
-  products: Product[]
-
+  
+  products: Product[];
+  
   constructor(private prSv: ProductsService) {
     this.products = prSv.products;
   }
-
+  
   removeAll():void{
     this.prSv.clearProducts();
     this.products = this.prSv.products;
   }
 
-  view():void{
-    console.log(this.prSv.updateTotalPrice())
+  removeProduct(id: number): void {
+    this.prSv.removeOneProduct(id);
+    this.products = this.prSv.products;
   }
 }

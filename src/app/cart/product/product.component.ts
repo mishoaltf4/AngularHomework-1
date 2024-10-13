@@ -1,20 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output} from '@angular/core';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ProductsService } from '../../Services/products.service';
+import { Product } from '../../models/product.interface';
 
-interface Product {
-  id: number;
-  name: string;
-  size: string;
-  color: string;
-  material: string;
-  seller: string;
-  price: number;
-  totalPrice: number,
-  img: string;
-  quantity: number;
-}
 
 @Component({
   selector: 'app-product',
@@ -26,22 +15,24 @@ interface Product {
 
 export class ProductComponent {
 
-  products: Product[];
+  productServices
+  @Input() producter!: Product
+  @Output() removeOneProduct = new EventEmitter<number>();
+
 
   constructor(private productService: ProductsService ){
-    this.products = productService.products
+    this.productServices = productService
   }
 
   ngOnChange(productID:number):void{
-    const updatedProduct = this.products.find(product => product.id === productID);
+    const updatedProduct = this.productServices.products.find(product => product.id === productID);
     if (updatedProduct) {
       updatedProduct.totalPrice = updatedProduct.price * updatedProduct.quantity
       this.productService.updateTotalPrice();
     }
   }
 
-  delete(id:number):void{
-    this.productService.delete(id);
-    this.products = this.productService.products;
+  removeProduct():void{
+    this.removeOneProduct.emit(this.producter.id);
   }
 }
